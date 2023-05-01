@@ -26,6 +26,10 @@ function Content() {
     return () => {};
   }, [randomNoun, currentLanguages]);
 
+  const getGoogleTranslateLink = (word, language) => {
+    return `https://translate.google.com/?sl=en&tl=${Languages[language]}&text=the%20${word}&op=translate`;
+  };
+
   return (
     <>
       <h1>Random Noun</h1>
@@ -37,7 +41,11 @@ function Content() {
           <h2>Translate</h2>
           <ul>
             {currentLanguages.map((language) => (
-              <li key={language}>{translations[Languages[language]]} : {language}</li>
+              <li key={language}>
+                <a href={getGoogleTranslateLink(randomNoun, language)} target="_blank" rel="noopener noreferrer">
+                  {translations[Languages[language]]} : {language}
+                </a>
+              </li>
             ))}
           </ul>
         </div>
